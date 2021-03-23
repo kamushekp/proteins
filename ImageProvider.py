@@ -13,6 +13,10 @@ class ImageProvider:
     def _get_train_id(self, num):
         return self.train_df.iloc[num].ID
     
+    def loat_train_label_by_number(self, image_number):
+        train_id = self._get_train_id(image_number)
+        return self._load_train_labels(train_id)
+    
     def load_train_sample_by_number(self, num, colors = ['red', 'green', 'blue', 'yellow']):
         return self.load_train_sample(self._get_train_id(num), colors)
     

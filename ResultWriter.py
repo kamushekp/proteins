@@ -4,6 +4,7 @@ from os import path
 import pathlib
 from PathProvider import PathProvider
 import cv2
+import json
 
 class ResultWriter:
     def __init__(self):
@@ -38,3 +39,11 @@ class ResultWriter:
         exception_path = self.path_provider.get_error_path(image_number)
         with open(exception_path, 'w+', encoding='utf-8') as f:
             f.write(message)
+            
+    def write_train_features(self, image_features_dto):
+        path = self.path_provider.get_train_features_path()
+        stringed = json.dumps(image_features_dto)
+        with open(path, 'a+', encoding='utf-8') as f:
+            f.write(f'{stringed}\n')
+            
+        
